@@ -69,5 +69,28 @@ public class SearchFunctionalityTest extends BaseClass{
 		Assert.assertTrue(srp.validateNoSearchResultMsg());
 //		tearDown();
 	}
+	
+	@When("customer enters valid {string} in search text field")
+	public void customer_enters_valid_in_search_text_field(String product) {
+		hp.enterProductSearchTxtBox(product);
+	}
+	
+	// old format for step definition | \"(.*)\" -> expression for data driven
+//	@When("^customer enters valid \"(.*)\" in search text field$")
+//	public void customer_enters_valid_in_search_text_field(String product) {
+//		hp.enterProductSearchTxtBox(product);
+//	}
+	
+	@Then("customer should be in {string} result page")
+	public void customer_should_be_in_result_page(String product) {
+		Assert.assertTrue(srp.validateSearchResultPageTitle(product));
+		Assert.assertTrue(srp.validateSearchResultPageURL(product));
+	}
+
+
+
+
+
+
 
 }

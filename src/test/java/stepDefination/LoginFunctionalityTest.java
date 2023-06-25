@@ -22,7 +22,7 @@ public class LoginFunctionalityTest extends BaseClass{
 
 	@And("is now in Sign in page")
 	public void is_now_in_sign_in_page() {
-	    lp.clickSignInBtn();
+	    Assert.assertTrue(lp.validateSiginPageHeader());
 	}
 
 	@When("customer enter invalid username")
@@ -54,5 +54,21 @@ public class LoginFunctionalityTest extends BaseClass{
 	public void error_message_should_be_displayed() {
 	    Assert.assertTrue(lp.validateLoginErrorMsgBox());
 	}
+
+	@When("customer enter invalid {string}")
+	public void customer_enter_invalid_test_gmail_com(String username) {
+		lp.enterUsernameTxtField(username);
+	}
+	@When("in enter invalid {string}")
+	public void in_enter_invalid(String password) {
+		lp.enterPasswordTxtBox(password);
+	}
+	@Then("customer should still be in {string} page")
+	public void customer_should_still_be_in_page(String signInPageTitle) {
+	    Assert.assertEquals(lp.getLoginPageTitle(),signInPageTitle);
+	}
+
+
+
 
 }

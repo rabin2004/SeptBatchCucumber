@@ -16,10 +16,11 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-
+@Release1.0
 Feature: Search Functionality
 Customer will be able to search for product available.
 
+@Regression
 Scenario: Positive Search fucntionality test with clicking search button
 Given Customer is in homepage
 When customer enters valid product in search text field
@@ -27,6 +28,7 @@ And click search button
 Then customer should be in product result page
 And should see all available products
 
+@Regression
 Scenario: Positive Search fucntionality test by hitting Enter key
 Given Customer is in homepage
 When customer enters valid product in search text field
@@ -34,6 +36,7 @@ And hit Enter key
 Then customer should be in product result page
 And should see all available products
 
+@Regression
 Scenario: Negative Search fucntionality test with clicking search button
 Given Customer is in homepage
 When customer enters invalid product in search text field
@@ -41,10 +44,27 @@ And click search button
 Then customer should be in invalid product result page
 And should see product not available error message
 
+@Regression
 Scenario: Positive Search fucntionality test by hitting Enter key
 Given Customer is in homepage
 When customer enters invalid product in search text field
 And hit Enter key
 Then customer should be in invalid product result page
 And should see product not available error message
+
+@Regression @E2E
+Scenario Outline: Positive Search fucntionality test with data driven
+Given Customer is in homepage
+When customer enters valid "<product>" in search text field
+And click search button
+Then customer should be in "<product>" result page
+And should see all available products
+
+Examples:
+|product|
+|apple|
+|samsung|
+|pixel|
+|mac|
+|surface pro|
 

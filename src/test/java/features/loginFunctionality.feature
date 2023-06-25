@@ -16,10 +16,11 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-
+@Release2.0
 Feature: Login Functionality
 Customer should be able to login into the app by providing valid crendentials
 
+@Regression
 Scenario: Negative Login functionality with both invalid credentials
 Given Customer is in homepage
 And customer clicks account & list link
@@ -30,5 +31,22 @@ And in enter invalid password
 And clicks sign in button
 Then sign in should be unsuccessful
 And error message should be displayed
+
+@newScenario @E2E
+Scenario Outline: Negative Login functionality with data drivin
+Given Customer is in homepage
+And customer clicks account & list link
+And is now in Sign in page
+When customer enter invalid "<username>"
+And clicks continue button
+And in enter invalid "<password>"
+And clicks sign in button
+Then customer should still be in "Amazon Sign-In" page
+And error message should be displayed
+
+Examples:
+|username		|			password|
+|test@gmail.com|test123|
+|test12@gmail.com|test1234|
 
 
